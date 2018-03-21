@@ -1,0 +1,6 @@
+DEVICE=eth0
+NAME=eth0
+BOOTPROTO=static
+ONBOOT=yes
+BRIDGE=br0
+NM_CONTROLLED="yes"
