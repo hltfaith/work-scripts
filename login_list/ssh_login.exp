@@ -1,0 +1,14 @@
+#!/usr/bin/expect -f
+# ssh_login.exp 这个一个expect脚本,用户写交互的工具
+set TARGET [lindex $argv 0]
+set USER [lindex $argv 1]
+set PASSWD [lindex $argv 2]
+set PORT [lindex $argv 3]
+set timeout 10
+
+spawn ssh $USER@$TARGET -p $PORT
+expect {
+    "*yes/no" {send "yes\r"; exp_continue}
+    "*password:" {send "$PASSWD\r"}
+}
+interact
