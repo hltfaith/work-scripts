@@ -1,18 +1,16 @@
 #!/bin/bash
 
-startupeasyscan=`ps -ef | grep startup-easyscan.sh | wc -l`
-startupworkflow=`ps -ef | grep startup-easyscan.sh | wc -l`
-
 #kill server process
 function close_server(){
-
-	if [ $startupeasyscan>=2 ]
+	startupeasyscan=`ps -ef | grep startup-easyscan.sh | wc -l`
+	startupworkflow=`ps -ef | grep startup-easyscan.sh | wc -l`
+	if [ $startupeasyscan -ge 2 ]
 	then
 		value=`ps -ef  | grep startup-easyscan.sh | awk -F ' ' '{print $2}' | awk 'NR==1'`
 		kill -9 $value
 	fi
 
-	if [ $startupworkflow>=2 ]
+	if [ $startupworkflow -ge 2 ]
 	then
 		value1=`ps -ef | grep startup-workflow.sh | awk -F ' ' '{print $2}' | awk 'NR==1'`
 		kill -9 $value1
@@ -21,8 +19,10 @@ function close_server(){
 
 #upload log file
 function upload_file(){
+	startupeasyscan=`ps -ef | grep startup-easyscan.sh | wc -l`
+	startupworkflow=`ps -ef | grep startup-easyscan.sh | wc -l`
 
-	if [ $startupeasyscan -eq 1 && $startupworkflow -eq 1]
+	if [ $startupeasyscan -eq 1 -a $startupworkflow -eq 1 ]
 	then
 		cd /image/logs
 		tar zcf expall_wfl_$(date +"%y%m%d%k%M").tar.gz *
@@ -44,8 +44,8 @@ function upload_file(){
 # remove log file
 function remove_log(){
 
-	touch /root/script/backup_values.log
-	ftp -n <<- EOF >> /root/script/backup_values.log
+	touch /image/bin/backup_values.log
+	ftp -n <<- EOF >> /image/bin/backup_values.log
 		open 172.16.6.105
 		user database database
 		cd zj
@@ -54,25 +54,27 @@ function remove_log(){
 	EOF
 
 	xing=*
-	backup_values=`cat /root/script/backup_values.log | grep expall_wfl_$(date +"%y%m%d")$xing.tar.gz | wc -l`
-	if [ $backup_values -ge 1 ]
+	ftpfile_size_value=`cat backup_values.log | grep $(date +"%y%m%d")$xing.tar.gz | awk -F ' ' '{print $5}' | awk 'NR==1'`
+	localfile_size_value=`ls -l /image/logs/*.tar.gz | grep $(date +"%y%m%d")$xing.tar.gz | awk -F ' ' '{print $5}' | awk 'NR==1'`
+	backup_file_length=`cat /image/bin/backup_values.log | grep expall_wfl_$(date +"%y%m%d")$xing.tar.gz | wc -l`
+	
+	if [ $backup_file_length -ge 1 -a $localfile_size_value -eq $ftpfile_size_value ]
 	then
 		cd /image/logs
-		rm -rf  *.tar.gz
-		rm -rf /root/script/backup_values.log
-
+		rm -rf  *.tar.gz *.log
+		rm -rf /image/bin/backup_values.log
 	else
 		upload_file
 		cd /image/logs
 		rm -rf  *.tar.gz
-		rm -rf /root/script/backup_values.log
+		rm -rf /image/bin/backup_values.log
 	fi
 }
 
 #start server
 function start_server(){
-	bash /image/bin/startup-easyscan.sh
-	bash /image/bin/startup-workflow.sh
+	bash /image/bin/startup-easyscan.sh &
+	bash /image/bin/startup-workflow.sh &
 }
 
 close_server
@@ -80,4 +82,4 @@ upload_file
 remove_log
 start_server
 
-#10 0 * * * /bin/bash /root/script/backup_ftp.sh
+#10 0 * * * /bin/bash /image/bin/backup_ftp.sh
