@@ -8,7 +8,7 @@ linux_bash
 ├── asmcmd_monitor.sh
 ├── backup_ftp.sh
 ├── backup_ftp_v3.sh
-├── bridge
+├── bridge     
 │   ├── 6-5
 │   │   ├── ifcfg-br0
 │   │   └── ifcfg-eth0
@@ -44,3 +44,9 @@ linux_bash
 │   └── shell30.py
 ├── Tablespace.sh
 └── tools
+
+
+
+
+
+
