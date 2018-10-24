@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+</body>
+
+<script type="text/javascript">
+
+    /*
+    // 变量个事转换
+    var a = "3";
+    var b = 2;
+    console.log(typeof a);
+    console.log(a-b);
+    */
+
+
+    /*
+    //parseInt()可以将字符串转数字。parse表示“转换”，Int表示“整数”（注意Int的拼写）
+    parseInt("5");
+    console.log(parseInt("2018您好"));
+    console.log(parseInt("岁的唐慧茹带着5岁的儿子去逛街"));
+
+    var a = parseInt(5.8) + parseInt(4.7);
+    console.log(a);
+    */
+
+
+    /*
+    // 1. 基本数据类型   (number - 数字)
+    var a = 123;
+    console.log(typeof a);
+
+    //特殊情况
+    var a1 = 5/0;
+    console.log(a1);
+    console.log(typeof a1); //Infinity 无限大. number类型
+
+    // string 字符串
+    var str = '123';
+    console.log(typeof str);
+
+    // null
+    var c1 = null; //空对象.object
+    console.log(typeof c1);
+
+    // boolean 布尔值
+    var b1 = false;
+    console.log(b1);
+
+    // undefined
+    var d1;
+    console.log(typeof d1);
+    */
+
+    /*
+    2.引用数据类型
+    Function
+    Object
+    Array
+    String
+    Date
+    * */
+
+    // 运算符
+
+    /*
+    1.赋值运算符
+    =
+    +=
+    -=
+    *=
+    /=
+    %=
+
+    2.算数运算符
+    +
+    -
+    *
+    /
+    %
+    ++
+    --
+    i++返回的是自增之前的值，++i返回的则是自增后的值
+
+    * */
+
+    /*
+    //示例1
+    var i = 1;
+    var x = i++;    //先对x赋值，在对i自增。此时i为2，但赋给x的是1
+    console.log(x);
+    console.log(i);
+    */
+
+    /*
+    //示例2
+    var i = 1;
+    var x = ++i;    //先自增,再赋值。此时i为2，x也是2
+    console.log(x);
+    console.log(i);
+    */
+
+    /*
+    3.比较运算符
+    ==      等于
+    ===     等同于(值和类型均相等)
+    !=      不等于
+    !==     不等同于
+    >       大于
+    <       小于
+    >=      大于等于
+    <=      小于等于
+    * */
+
+    /*//举例：
+    var x = 5;
+    if(x === 5){
+        console.log('值相等,类型也相等');
+    }else if(x == '5'){
+        console.log('值相等');
+    }else{
+        console.log('不匹配');
+    }
+*/
+
+    /*
+    * 4.特殊情况
+    * 字符串拼接+字符串运算 特殊情况。python中有拼接字符串中更简便的办法，其实在js中也有，大家可以百度引擎搜索es6模板字符串。（扩展）
+    * */
+
+    /*var firstName = '小';
+    var lastName = '马哥';
+    var name = '伊拉克';
+    var am = '美军';
+
+    // 字符串拼凑
+    var str = "2003年3月20日,"+name+"战争爆发，以美军为主的联合部队仅用20多天就击溃了萨达姆的军队。这是继十多年前的海湾战争后，"
+        +am+"又一次取得的大规模压倒性军事胜利。";
+
+    var fullStr = str;
+    console.log(fullStr);
+
+    var fullName = firstName +" " + lastName;
+    console.log(fullName);*/
+
+   /* //不能对字符串进行数字运算 只能拼接。纯数字的字符串除外
+    var a1 = '1';
+    var a2 = '2';
+    console.log(a1+a2);*/
+
+   /*var b1 = 'one';
+   var b2 = 'two';
+
+   console.log(typeof(b1*b2));*/
+
+
+   // 数据类型转换
+    /*//1.将数值类型转换成字符串类型
+    // 隐式转换
+    var n1 = 123;
+    var n2 = '123';
+    var n3 = n1+n2;
+
+    // 隐式转换
+    console.log(n3);
+    console.log(typeof n3);
+*/
+
+    //强制类型转换
+    /*var n1 = 123;
+    // 强制类型转换String(), toString()
+    var str1 = String(n1);
+    console.log(typeof str1);
+
+    var num = 234;
+    console.log(num.toString());
+    console.log(typeof num.toString());*/
+
+    //将字符串类型转换成数值类型
+    /*var stringNum = '789.123wadjhkd';
+    var num2 = Number(stringNum);
+    console.log(num2);
+
+    // parseInt()可以解析一个字符串 并且返回一个整数
+    // 只保留字符串最开头的数字,后面的直接忽略
+    console.log(parseInt(stringNum));
+
+    //浮点数
+    console.log(parseFloat(stringNum));*/
+
+    //任何数据类型都可以转换为boolean类型
+    /*var b1 = '123';
+    var b2 = 0;
+    var b3 = -123;
+
+    var b4 = Infinity;
+    var b5 = NaN;
+
+    var b6;
+    var b7 = null;
+
+
+    // 非0即真
+    console.log(Boolean(b1));
+    console.log(Boolean(b2));
+    console.log(Boolean(b3));
+    console.log(Boolean(b4));
+    console.log(Boolean(b5));
+    console.log(Boolean(b6));
+    console.log(Boolean(b7));
+*/
+
+
+    // 六、流程控制
+    // 1. if if-else 多层if-else
+
+    /*var ji = 201;
+    if(ji > 20){
+        console.log('恭喜你, 吃鸡成功');
+    }*/
+    // alert('haha');
+
+    // if-else
+
+    /*var ji = 20;
+    if(ji >= 20){
+        console.log('恭喜你，吃鸡成功,大吉大利');
+    }else{
+        console.log('很遗憾,下次继续努力');
+    }*/
+
+    //多层if-else
+
+    //2.逻辑与&&、逻辑或||
+    /*if (sum>400 && math>90){
+        console.log('清华大学录入成功');
+    }else{
+        alert('考试失败')
+    }*/
+
+    //3.switch
+    //case表示一个条件 满足这个条件就会走进来 遇到break跳出。break终止循环。如果某个条件中不写 break，那么直到该程序遇到下一个break停止
+    /*var gameScore = 'better';
+    switch(prompt('请输入密级口令：')){
+        case 'good':
+            console.log('玩的很好...');
+            break;
+
+        case 'better':
+            console.log('玩的比较6');
+            break;
+
+        case 'best':
+            console.log('恭喜你 吃鸡成功');
+            break;
+
+        default:
+            console.log('很遗憾...');
+    }*/
+
+    // 4.while循环
+    /*var i = 1;
+    while(i<=9){
+        console.log(i);
+        i = i+1;
+    }*/
+
+    /*var i = 1;
+    var sum = 0;
+    while(i<=100){   //判断循环条件
+        if ((i % 2)){
+            sum += i;
+        }
+        i = i+1;
+    }
+
+    console.log(sum);*/
+
+
+    // 5. do_while
+   /* var i = 3;
+    do{
+        console.log(i);
+        i++;
+    }while (i<10);*/
+
+    // 6.for循环
+    /*for(var i = 1; i<10; i++){
+        console.log(i);
+    }*/
+
+/*    for (var i=1; i<=100; i++){
+        if (i%2==0){
+            //偶数
+            console.log(i);
+        }
+    }
+
+    var sum = 0;
+    for(var j=1; j<=100; j++){
+        sum = sum+j;
+    }
+    console.log(sum);*/
+
+/*    for(var i=1; i<=3; i++){
+        for(var j=0;j<6;j++){
+            document.write('*');
+        }
+        document.write('<br>');
+    }*/
+
+    //1.在浏览器中输出直角三角形
+    /*for(var i=1; i<=6; i++){
+        for(var j=1; j<=i; j++){
+            document.write("*");
+        }
+        document.write('<br>');
+    }*/
+
+    /*for(var i=1;i<=6;i++){
+
+        //控制我们的空格数
+        for(var s=i; s<6; s++){
+            document.write('&nbsp;');
+        }
+
+        for(var j=1;j<2*i-1;j++){
+            document.write('*');
+        }
+
+        document.write('<br>');
+    }
+*/
+
+
+
+</script>
+
+
+</html>
