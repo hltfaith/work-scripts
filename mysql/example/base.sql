@@ -29,3 +29,4 @@ update db1.t1 set name='alex' where id=2;
 #只显示id字段<br>select id from db1.t1;<br>#执行显示2个字段
 select id,name from db1.t1;<br>#查询所有字段
 select * from db1.t1;
+
