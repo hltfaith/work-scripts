@@ -10,7 +10,9 @@ insert t1(id,name) values(1,"mjj01"),(2,"mjj02"),(3,"mjj03");
 ## 删
 # 删除表
 drop table t1;
-#清空表<br>delete from t1;<br>#删除表
+#清空表
+delete from t1;
+#删除表
 delete from t1 where id=2;
 
 ## 改
