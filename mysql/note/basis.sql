@@ -95,8 +95,9 @@ create table b2 select * from db2.a1 where 1>5;
 # 还有一种做法，使用like(只拷贝表结构，不拷贝记录)
 create table b3 like db2.a1;
 
-
-
+# 枚举类型和集合类型
+# enum 单选 只能在给定的范围内选一个值，如性别 sex 男male/女female
+# set 多选 在给定的范围内可以选择一个或一个以上的值（爱好1,爱好2,爱好3...）
 
 
 
