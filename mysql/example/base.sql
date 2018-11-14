@@ -3,7 +3,7 @@
 
 ## 增
 #增加一张表
-create table t1(id int,name char);
+create table t1(id int,name char(20));
 # 插入3条数据，规定id，name数据leilei
 insert t1(id,name) values(1,"mjj01"),(2,"mjj02"),(3,"mjj03");
 
