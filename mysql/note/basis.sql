@@ -89,11 +89,11 @@ show create table a1\G
 # 复制db2.a1的表结构和记录
 create table b1 select * from db2.a1;
 
+# 在db2数据库下新创建一个b2表，给一个where条件，条件要求不成立，条件为false，只拷贝表结构
+create table b2 select * from db2.a1 where 1>5;
 
-
-
-
-
+# 还有一种做法，使用like(只拷贝表结构，不拷贝记录)
+create table b3 like db2.a1;
 
 
 
