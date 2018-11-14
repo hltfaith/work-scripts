@@ -80,15 +80,14 @@ create table 表名(
 2. 宽度和约束条件可选
 3. 字段名和类型是必须的
 
+# 查看a1表的结构
+desc a1;
 
+# 查看表的详细结构
+show create table a1\G
 
-
-
-
-
-
-
-
+# 复制db2.a1的表结构和记录
+create table b1 select * from db2.a1;
 
 
 
