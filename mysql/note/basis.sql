@@ -46,8 +46,8 @@ show engines；
 # 查看正在使用的存储引擎
  show variables like '%storage_engine%';
 
-
-
+# 指定表类型/存储引擎
+create table t1(id int)engine=innodb;
 
 
 
