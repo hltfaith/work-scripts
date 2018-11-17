@@ -1,0 +1,60 @@
+
+参考博客：
+
+	https://bugxia.com/238.html       Linux下使用nping测试TCP\UDP延迟
+	
+	http://blog.sina.com.cn/s/blog_c02c69f10101gl27.html      比较不错，案例少
+	https://www.jianshu.com/p/c773fd6ff824				介绍参数，齐全
+
+[root@nw1test_server sh]# nping --es --nc --ep 12345 -e eth0 
+
+Starting Nping 0.6.40 ( http://nmap.org/nping ) at 2018-11-02 08:40 EDT
+Packet capture will be performed using network interface eth0.
+Waiting for connections...
+
+
+
+changhao@develop:~$ sudo nping --ec --nc 10.111.111.67 --tcp -ep 12345
+
+Starting Nping 0.7.60 ( https://nmap.org/nping ) at 2018-11-02 20:44 CST
+SENT (0.1830s) TCP 10.111.111.51:59247 > 10.111.111.67:80 S ttl=64 id=14431 iplen=40  seq=3140579346 win=1480 
+CAPT (0.1876s) TCP 10.111.111.51:59247 > 10.111.111.67:80 S ttl=64 id=14431 iplen=40  seq=3140579346 win=1480 
+RCVD (0.3678s) TCP 10.111.111.67:80 > 10.111.111.51:59247 RA ttl=64 id=30713 iplen=40  seq=0 win=0 
+SENT (1.1832s) TCP 10.111.111.51:59247 > 10.111.111.67:80 S ttl=64 id=14431 iplen=40  seq=3140579346 win=1480 
+CAPT (1.1839s) TCP 10.111.111.51:59247 > 10.111.111.67:80 S ttl=64 id=14431 iplen=40  seq=3140579346 win=1480 
+RCVD (1.3878s) TCP 10.111.111.67:80 > 10.111.111.51:59247 RA ttl=64 id=31484 iplen=40  seq=0 win=0 
+SENT (2.1834s) TCP 10.111.111.51:59247 > 10.111.111.67:80 S ttl=64 id=14431 iplen=40  seq=3140579346 win=1480 
+CAPT (2.1838s) TCP 10.111.111.51:59247 > 10.111.111.67:80 S ttl=64 id=14431 iplen=40  seq=3140579346 win=1480 
+RCVD (2.2038s) TCP 10.111.111.67:80 > 10.111.111.51:59247 RA ttl=64 id=32085 iplen=40  seq=0 win=0 
+SENT (3.1838s) TCP 10.111.111.51:59247 > 10.111.111.67:80 S ttl=64 id=14431 iplen=40  seq=3140579346 win=1480 
+CAPT (3.1841s) TCP 10.111.111.51:59247 > 10.111.111.67:80 S ttl=64 id=14431 iplen=40  seq=3140579346 win=1480 
+RCVD (3.2238s) TCP 10.111.111.67:80 > 10.111.111.51:59247 RA ttl=64 id=32447 iplen=40  seq=0 win=0 
+SENT (4.1840s) TCP 10.111.111.51:59247 > 10.111.111.67:80 S ttl=64 id=14431 iplen=40  seq=3140579346 win=1480 
+CAPT (4.1845s) TCP 10.111.111.51:59247 > 10.111.111.67:80 S ttl=64 id=14431 iplen=40  seq=3140579346 win=1480 
+RCVD (4.2439s) TCP 10.111.111.67:80 > 10.111.111.51:59247 RA ttl=64 id=32724 iplen=40  seq=0 win=0 
+ 
+Max rtt: 204.500ms | Min rtt: 20.283ms | Avg rtt: 101.838ms
+Raw packets sent: 5 (200B) | Rcvd: 5 (200B) | Lost: 0 (0.00%)| Echoed: 5 (200B) 
+Nping done: 1 IP address pinged in 5.23 seconds
+changhao@develop:~$ sudo nping --ec --nc 10.111.111.67 --tcp -ep 12345
+
+Starting Nping 0.7.60 ( https://nmap.org/nping ) at 2018-11-02 20:44 CST
+SENT (0.1661s) TCP 10.111.111.51:38399 > 10.111.111.67:80 S ttl=64 id=42755 iplen=40  seq=679284835 win=1480 
+CAPT (0.1673s) TCP 10.111.111.51:38399 > 10.111.111.67:80 S ttl=64 id=42755 iplen=40  seq=679284835 win=1480 
+RCVD (0.3442s) TCP 10.111.111.67:80 > 10.111.111.51:38399 RA ttl=64 id=38917 iplen=40  seq=0 win=0 
+SENT (1.1664s) TCP 10.111.111.51:38399 > 10.111.111.67:80 S ttl=64 id=42755 iplen=40  seq=679284835 win=1480 
+CAPT (1.1668s) TCP 10.111.111.51:38399 > 10.111.111.67:80 S ttl=64 id=42755 iplen=40  seq=679284835 win=1480 
+RCVD (1.3642s) TCP 10.111.111.67:80 > 10.111.111.51:38399 RA ttl=64 id=39154 iplen=40  seq=0 win=0 
+SENT (2.1668s) TCP 10.111.111.51:38399 > 10.111.111.67:80 S ttl=64 id=42755 iplen=40  seq=679284835 win=1480 
+CAPT (2.1673s) TCP 10.111.111.51:38399 > 10.111.111.67:80 S ttl=64 id=42755 iplen=40  seq=679284835 win=1480 
+RCVD (2.1801s) TCP 10.111.111.67:80 > 10.111.111.51:38399 RA ttl=64 id=40025 iplen=40  seq=0 win=0 
+SENT (3.1673s) TCP 10.111.111.51:38399 > 10.111.111.67:80 S ttl=64 id=42755 iplen=40  seq=679284835 win=1480 
+CAPT (3.1678s) TCP 10.111.111.51:38399 > 10.111.111.67:80 S ttl=64 id=42755 iplen=40  seq=679284835 win=1480 
+RCVD (3.2002s) TCP 10.111.111.67:80 > 10.111.111.51:38399 RA ttl=64 id=40613 iplen=40  seq=0 win=0 
+SENT (4.1676s) TCP 10.111.111.51:38399 > 10.111.111.67:80 S ttl=64 id=42755 iplen=40  seq=679284835 win=1480 
+CAPT (4.1680s) TCP 10.111.111.51:38399 > 10.111.111.67:80 S ttl=64 id=42755 iplen=40  seq=679284835 win=1480 
+RCVD (4.2202s) TCP 10.111.111.67:80 > 10.111.111.51:38399 RA ttl=64 id=41355 iplen=40  seq=0 win=0 
+ 
+Max rtt: 197.706ms | Min rtt: 13.224ms | Avg rtt: 94.822ms
+Raw packets sent: 5 (200B) | Rcvd: 5 (200B) | Lost: 0 (0.00%)| Echoed: 5 (200B) 
+Nping done: 1 IP address pinged in 5.21 seconds
