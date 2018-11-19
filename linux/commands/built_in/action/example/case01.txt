@@ -1,0 +1,23 @@
+
+## 1. shell action函数
+
+#!/bin/bash
+. /etc/init.d/functions #通过这个脚本声明函数
+hehe(){
+  rs=0
+  [ $rs -eq 0 ] && action "Ipvsadm stoped." /bin/true
+}
+hehe
+
+执行
+
+[root@master2 html]# sh test.sh
+Ipvsadm stoped. [ OK ]
+改成false
+[root@master2 html]# sh test.sh
+Ipvsadm stoped. [FAILED]
+
+
+**************************************************************************************
+
+
