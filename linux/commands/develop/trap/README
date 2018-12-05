@@ -1,0 +1,5 @@
+trap 用法使用
+
+案例1：
+# 防止Ctrl + C 终止shell
+trap "" INT QUIT TSTP
