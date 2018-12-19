@@ -1,0 +1,4 @@
+define 预处理器
+下面是使用 #define 预处理器定义常量的形式：
+
+#define identifier value
