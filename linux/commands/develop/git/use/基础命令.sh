@@ -9,3 +9,8 @@ git branch -d -r origin/branchA #删除远程分支
 git merge origin/master
 # 或者
 git rebase origin/master
+
+# 丢比差异
+git diff
+
+
