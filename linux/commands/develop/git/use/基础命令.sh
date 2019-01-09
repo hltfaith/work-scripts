@@ -10,7 +10,11 @@ git merge origin/master
 # 或者
 git rebase origin/master
 
-# 丢比差异
-git diff
+# 对比差异
+# 先更新下本地的远程分支
+git fetch origin
+
+# 然后可以比对
+git diff 本地分支 origin/xxxx
 
 
