@@ -1,0 +1,6 @@
+
+# 跟踪PID进程
+strace -p 1011
+
+# 跟踪命令
+strace 
