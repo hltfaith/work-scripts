@@ -9,7 +9,7 @@ int main()
 
     int area;
     area = LENGTH * WIDTH;
-    prinft("value of area: %d", area);
+    printf("value of area: %d", area);
     printf("%c", NEWLINE);
     
     return 0;
