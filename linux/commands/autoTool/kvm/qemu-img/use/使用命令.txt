@@ -1,0 +1,15 @@
+
+# 确认镜像的格式
+qemu-img info test.qcow2  
+
+# 为镜像test.qcow2创建快照
+qemu-img snapshot -c snapshot01 test.qcow2
+
+# 列出某个镜像的所有快照
+qemu-img snapshot -l test.qcow2  
+
+# 使用快照
+qemu-img snapshot -a snapshot01 test.qcow2 
+
+# 删除快照
+qemu-img snapshot -d snapshot01 test.qcow2
