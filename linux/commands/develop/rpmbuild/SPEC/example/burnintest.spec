@@ -1,16 +1,15 @@
 Name:	burnintest
-Version: 1.1.2
+Version: 1.1.16
 Release: 1.bt.1
 Summary: burnintest install configure	
 
 Group:	System Environment/Base	
 License: GPLv2+	
-#URL:		
 Source0: bitlinux.tar.gz
 
 BuildArch: noarch
 #BuildRequires:	
-#Requires:	
+#Requires:	bash
 
 %description
 burnintest install configure
@@ -20,7 +19,8 @@ burnintest install configure
 %autosetup -c %{name}
 
 %post
-bash %{_builddir}/burnintest-%{version}/burnintest/burnintest.sh
+tar zxf /var/bitlinux.tar.gz -C /var/
+rm -rf /var/bitlinux.tar.gz
 exit 0
 
 #%build
@@ -28,14 +28,21 @@ exit 0
 #make %{?_smp_mflags}
 
 %install
-#make install DESTDIR=%{buildroot}
-#bash %{_builddir}/burnintest-%{version}/burnintest/burnintest.sh
-#touch /home/desktop/a.txt
+mkdir -p $RPM_BUILD_ROOT/var/
+install -D -m 0755 %{SOURCE0} %{_localstatedir} 
+cp -f %{SOURCE0} $RPM_BUILD_ROOT/var/
+
+%clean
+rm -rf $RPM_BUILD_ROOT
+
+%postun
+rm -rf /var/burnintest
+exit 0
 
 %files
-%doc
+#%defattr(-,root,root,-)
+/var/bitlinux.tar.gz
 
 %changelog
 * Tue Feb 19 2019 Changhao Wu <changhao.wu@cs2c.com.cn> - 1.1.0-0
 - burnintest install configure
-
