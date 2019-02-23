@@ -1,0 +1,32 @@
+[root@linux ~]# tcpdump [-nn] [-i 介面] [-w 儲存檔名] [-c 次數] [-Ae]
+                        [-qX] [-r 檔案] [所欲擷取的資料內容]
+參數：
+-nn：直接以 IP 及 port number 顯示，而非主機名與服務名稱
+-i ：後面接要『監聽』的網路介面，例如 eth0, lo, ppp0 等等的介面；
+-w ：如果你要將監聽所得的封包資料儲存下來，用這個參數就對了！後面接檔名
+-c ：監聽的封包數，如果沒有這個參數， tcpdump 會持續不斷的監聽，
+     直到使用者輸入 [ctrl]-c 為止。
+-A ：封包的內容以 ASCII 顯示，通常用來捉取 WWW 的網頁封包資料。
+-e ：使用資料連接層 (OSI 第二層) 的 MAC 封包資料來顯示；
+-q ：僅列出較為簡短的封包資訊，每一行的內容比較精簡
+-X ：可以列出十六進位 (hex) 以及 ASCII 的封包內容，對於監聽封包內容很有用
+-r ：從後面接的檔案將封包資料讀出來。那個『檔案』是已經存在的檔案，
+     並且這個『檔案』是由 -w 所製作出來的。
+所欲擷取的資料內容：我們可以專門針對某些通訊協定或者是 IP 來源進行封包擷取，
+     那就可以簡化輸出的結果，並取得最有用的資訊。常見的表示方法有：
+     'host foo', 'host 127.0.0.1' ：針對單部主機來進行封包擷取
+     'net 192.168' ：針對某個網域來進行封包的擷取；
+     'src host 127.0.0.1' 'dst net 192.168'：同時加上來源(src)或目標(dst)限制
+     'tcp port 21'：還可以針對通訊協定偵測，如 tcp, udp, arp, ether 等
+     還可以利用 and 與 or 來進行封包資料的整合顯示呢！
+
+範例一：以 IP 與 port number 捉下 eth0 這個網路卡上的封包，持續 3 秒
+[root@linux ~]# tcpdump -i eth0 -nn
+tcpdump: verbose output suppressed, use -v or -vv for full protocol decode
+listening on eth0, link-type EN10MB (Ethernet), capture size 96 bytes
+01:33:40.41 IP 192.168.1.100.22 > 192.168.1.11.1190: P 116:232(116) ack 1 win 9648
+01:33:40.41 IP 192.168.1.100.22 > 192.168.1.11.1190: P 232:364(132) ack 1 win 9648
+<==按下 [ctrl]-c 之後結束
+6680 packets captured              <==捉下來的封包數量
+14250 packets received by filter   <==由過濾所得的總封包數量
+7512 packets dropped by kernel     <==被核心所丟棄的封包
