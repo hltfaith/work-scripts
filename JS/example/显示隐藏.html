@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+
+    <style>
+
+        .show{
+            width: 200px;
+            height: 200px;
+            background-color: red;
+        }
+
+
+    </style>
+
+</head>
+<body>
+
+    <div class="box">
+
+        <button>隐藏</button>
+        <div class="show" id="box"></div>
+
+    </div>
+
+</body>
+
+
+<script>
+
+    window.onload = function () {
+        // 获取div对象
+        var box = document.getElementById('box');
+
+        // 标志位
+        var isShow = true;
+
+        // 即使只有一个botton, 也要使用[0]来获取, onclick表示点击事件
+        document.getElementsByTagName('button')[0].onclick = function () {
+
+            // this 表示当前时间发生者, 也就是你点击的标签
+            console.log(this);
+
+            // 标志位为true时
+            if(isShow){
+                //修改box的css属性, display:none, 表示隐藏
+                box.style.display = 'none';
+
+                //修改按钮的文字
+                this.innerText = '显示';
+
+                //修改标志位为false
+                isShow = false;
+            }else {
+
+                // display = 'block', 表示显示内容
+                box.style.display = 'block';
+                this.innerText = '隐藏';
+                isShow = true;
+            }
+        }
+    }
+
+</script>
+</html>
