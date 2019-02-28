@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+</body>
+
+<script>
+
+    // console.log(window);
+
+
+    // 数组使用
+
+    /*
+
+    concat()  把几个数组合并成一个数组
+    join()    返回字符串, 其中包含了连接到一起的数组中的所有元素，元素有指定的分割符分割开来
+    pop()     移除数组的最后一个元素
+    shift()   移除数组的第一个元素
+    unshift() 往数组的开头添加一个元素,并且返回新的长度
+    slice(start, end)  返回数组的一段
+    push()    往数组的最后添加一个元素,并返回新的长度
+    sort()    对数组进行排序
+    reverse() 对数组进行反转
+    length    它是一个属性,唯一的一个,获取数组的长度,可以结合for循环遍历操作
+
+     */
+
+    // 3.1 数组的合并 concat()
+    var north = ['北京', '山东', '天津'];
+    var sorth = ['东莞', '深圳', '上海'];
+
+    var newCity = north.concat(sorth);
+    console.log(newCity);
+
+    // 3.2 join()将数组中的元素使用指定的字符串连接起来,它会形成一个新的字符串
+    var score = [98, 97, 96, 95];
+    var str = score.join('|');
+    console.log(str);
+
+    // 3.3 将数组转换成字符串 toString()
+    var str1 = score.toString();
+    console.log(str1);
+
+    // 3.4 slice(start, end); 返回数组的一段, 前开后闭
+    var arr = ['张三', '李四', '王文', '赵六'];
+    var newArr = arr.slice(1, 3);
+    console.log(newArr);
+
+    // 3.5 pop移除数组的最后一个元素
+    var arr2 = ['张三', '李四', '王文', '赵六'];
+    var newArr = arr2.pop();
+    console.log(newArr);    // ["张三", "李四", "王文"]
+
+    // 3.6 push() 向数组最后添加一个元素
+    var arr3 = ['张三', '李四', '王文', '赵六'];
+    var newArr = arr3.push('小马哥');
+    console.log(newArr);
+
+    // 3.7 reverse() 翻转数组
+    var names = ['alex', 'xiaoma', 'tanhuang', 'angle'];
+    names.reverse();
+    console.log(names);
+
+    // 3.8 sort对数组排序
+    //var names = ['alex', 'xiaoma', 'tanhuang', 'abngel'];
+    names.sort();
+    console.log(names);
+
+    // 3.9判断是否为数组: isArray()
+    /*
+    *
+    * isArray是最新html5的方法
+    * 不而类型值 = Array.isArray(被检测的值)
+    *
+    * */
+
+    var colors = ['red', 'color', 'yellow'];
+    console.log(Array.isArray(colors));
+    
+
+
+</script>
+
+</html>
