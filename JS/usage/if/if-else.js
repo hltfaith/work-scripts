@@ -6,3 +6,15 @@ if(ji>=20){
     console.log('很遗憾 下次继续努力');
  
 }
+
+/* 多层if-else  */
+if (true) {
+   //执行操作
+}else if(true){
+    //满足条件执行           
+}else if(true){
+   //满足条件执行       
+}else{
+  //满足条件执行
+}
+
