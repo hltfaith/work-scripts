@@ -2,35 +2,55 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title></title>
     <style type="text/css">
-        #box {
+        .box{
             width: 100px;
             height: 100px;
-            background-color: pink;
-            cursor: pointer;
+            background-color: red;
         }
     </style>
-
 </head>
 <body>
-    <div id="box"></div>
-    <script type="text/javascript">
-        window.onload = function () {
-            var oDiv = document.getElementById("box");
-            //点击鼠标时，原本粉色的div变大了，背景变红了
-            oDiv.onclick = function () {
-                oDiv.style.width = "200px";   //属性值要写引号
-                oDiv.style.height = "200px";
-                oDiv.style.backgroundColor = "red";   //属性名是backgroundColor，不是background-Color
-            }
-            //鼠标移出div区域时，还原属性
-            oDiv.onmouseout = function () {
-                oDiv.style.width = "100px";
-                oDiv.style.height = "100px";
-                oDiv.style.backgroundColor = "pink";
-            }
+<button type="button" id="big">变大</button>
+<button type="button" id='small'>变小</button>
+<button type="button" id="circle">变圆</button>
+<button type="button" id="changeColor">变色</button>
+
+
+<div class="box" id="hezi"></div>
+
+<script type="text/javascript">
+    window.onload = function() {
+        //这样写很low，太繁琐了
+        // var oBig = document.getElementById('big');
+        // var oBig = document.getElementById('big');
+        // var oBig = document.getElementById('big');
+        // var oBig = document.getElementById('big');
+        //定义函数，通过id获取对象
+        function $(id){
+            return document.getElementById(id);
         }
-    </script>
+        //变大
+        $('big').onclick = function(){
+            $('hezi').style.width = '150px';
+            $('hezi').style.height = '150px';
+        }
+        //变小
+        $('small').onclick = function(){
+            $('hezi').style.width = '50px';
+            $('hezi').style.height = '50px';
+        }
+        //变圆
+        $('circle').onclick = function(){
+            $('hezi').style.borderRadius = '50%';
+        }
+        //变色
+        $('changeColor').onclick = function(){
+            $('hezi').style.backgroundColor = 'green';
+        }
+
+    }
+</script>
 </body>
 </html>
