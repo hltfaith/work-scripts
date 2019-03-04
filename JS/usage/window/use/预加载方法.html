@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<div id="box1">测试</div>
+
+<div id="box" class="box">
+
+    <p class="item1">内容</p>
+    <p class="item1">内容</p>
+    <p>内容</p>
+
+</div>
+
+
+</body>
+
+<script type="text/javascript">
+
+    // 1. 获取事件源
+    var div = document.getElementById("box1");
+
+    // 2. 绑定事件
+    div.onclick = function (ev) {
+
+        // 3. 书写时间驱动程序
+        alert("我是弹出的内容");
+
+    };
+
+    window.onload = function () {
+
+        // 通过 类名 获得 标签数组
+        var oP2 = document.getElementsByClassName('item1');
+        console.log(oP2);
+
+    }
+
+</script>
+
+</html>
