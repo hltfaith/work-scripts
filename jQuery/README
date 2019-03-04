@@ -1,0 +1,9 @@
+jQuery的介绍    
+
+jQuery 是 js 的一个库，封装了我们开发过程中常用的一些功能，方便我们调用，提高开发效率。
+js库是把我们常用的功能放到一个单独的文件中，我们用的时候，直接引用到页面里即可。
+
+关于jQuery的相关资料：
+官网：http://jquery.com/
+官网API文档：http://api.jquery.com/
+汉化API文档：http://www.css88.com/jqapi-1.9/
