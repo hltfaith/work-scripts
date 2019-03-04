@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<div id="app" style="width: 100px;height: 100px;border: 1px solid red;"></div>
+
+<button id="move">移动</button>
+<script type="text/javascript">
+    var oApp = document.getElementById('app');  //获取div对象
+    var moveBtn = document.getElementById('move');  //获取button
+
+    var count = 0;  //初始步数
+    var timer = null;  //定义一个空对象
+    moveBtn.onclick = function(){
+        timer = setInterval(function(){
+            //控制步距
+            count+=3;
+            //当移动到500px时,停止运动
+            if (count>=500) {
+                clearInterval(timer);  //去掉定时器
+            }
+            console.log(count);  //打印步数
+            oApp.style.marginLeft = count + 'px';
+        },30);  //30表示30微秒
+    }
+</script>
+
+</body>
+</html>
