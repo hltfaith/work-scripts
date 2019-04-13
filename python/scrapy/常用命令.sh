@@ -59,10 +59,8 @@ scrapy settings -h
 scrapy version
 scrapy version -v
 
-
-
-
-
+# runspider 所有的爬虫文件都是在项目目录下的spiders文件夹中
+scrapy runspider 爬虫文件名称
 
 
 
