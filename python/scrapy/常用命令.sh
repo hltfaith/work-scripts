@@ -55,9 +55,9 @@ scrapy view url地址
 # settings 获取当前的配置信息
 scrapy settings -h
 
-
-
-
+# version 查看版本信息，并查看依赖库的信息
+scrapy version
+scrapy version -v
 
 
 
