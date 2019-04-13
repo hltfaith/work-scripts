@@ -52,7 +52,8 @@ canshu="
 # view 该命令会讲网页document内容下载下来，并且在浏览器显示出来
 scrapy view url地址
 
-
+# settings 获取当前的配置信息
+scrapy settings -h
 
 
 
