@@ -5,6 +5,9 @@ scrapy startproject test1
 # 进入到项目目录scrapy genspider 爬虫名字 爬虫的域名
 scrapy genspider ncore12306 www.12306.cn
 
+# 启动scrapy项目
+scrapy crawl ncore12306
+
 # 关于命令详细使用
 echo "
 命令的使用范围
