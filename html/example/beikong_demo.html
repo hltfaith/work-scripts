@@ -1,0 +1,615 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="initial-scale=1.0, user-scalable=no" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>液化气站点分布</title>
+<style type="text/css">
+
+		body, html {width: 100%;height: 100%;margin:0;font-family:"微软雅黑";}
+		.topshow {width:100%; height: 160px;}
+		#allmap{width:100%;height:100%}
+		p{margin-left:5px; font-size:14px;}
+
+</style>
+<script src="http://libs.baidu.com/jquery/1.9.0/jquery.js"></script>
+<script type="text/javascript" src="http://api.map.baidu.com/api?v=3.0&ak=0lMvbiUVXfcvIAZmZklsjblGKNuDzlm3">
+//v3.0版本的引用方式：src="http://api.map.baidu.com/api?v=3.0&ak=您的密钥"
+</script>
+<script type="text/javascript" src="http://api.map.baidu.com/library/SearchInfoWindow/1.5/src/SearchInfoWindow_min.js"></script>
+<link rel="stylesheet" href="http://api.map.baidu.com/library/SearchInfoWindow/1.5/src/SearchInfoWindow_min.css" />
+</head>
+
+<body>
+	<div class="topshow">
+		<div style="text-align: center">
+
+			<h2>北京液化气南郊分公司目前共有21个液化气站点</h2>
+
+		</div>
+
+		<div id="" style="text-align: center">
+
+			请输入站点名称：<input type="text" id="txt1" size="20" value="运营中心" style="width: 150px;">
+			<input type="submit" name="select01" value="查询" onclick="input_value()">
+
+		</div>
+
+		<div id="r-result" style="margin-right: 200px;"></div>
+	</div>
+	<div id="allmap"></div>
+
+
+<script type="text/javascript">
+
+// 百度地图API功能
+map = new BMap.Map("allmap");
+map.centerAndZoom(new BMap.Point(116.343652,39.866694), 15);
+var data_info = [
+    [116.368675,39.876982,"地址：西城区右内西街里8号","htya"],
+    [116.430174,39.809747,"地址：丰台万源北路1号","wyl"],
+    [116.414844,39.863891,"地址：丰台东木樨园6号楼楼下","zgk"],
+	[116.427181,39.881859,"东城区天坛东里中区10号楼对面","tt"],
+	[116.424654,39.873516,"丰台蒲黄榆四里20号楼西侧","phy"],
+	[116.387005,39.905418,"西城东河沿45号","xly"],
+	[116.421087,39.905864,"东城区东打磨厂5号","cx"],
+	[116.394289,39.891778,"西城寿长街1号","hfl"],
+	[116.411276,39.822173,"丰台和义东里4区小学校旁","hy"],
+	[116.335702,39.893658,"西城区马连道北街8号","mlw"],
+	[116.367133,39.907577,"西城区东太平街甲1号","dtp"],
+	[116.568217,39.918109,"朝阳区定福庄南里1号","ew"],
+	[116.492758,39.852591,"朝阳区十八里店村液化气站","sbld"],
+	[116.295563,39.845779,"丰台区韩庄东里甲1号院","hx"],
+	[116.439077,39.890797,"东城区幸福南大街60号","xfdj"],
+	[116.369683,39.899656,"西城区长春里8号楼楼下","sfdl"],
+	[116.289831,39.864387,"丰台北大地西小区1--3里中间","bdd"],
+	[116.42093,39.865393,"丰台区东大街东里11号","ddj"],
+	[116.549486,39.945334,"朝阳区平房乡平房村","hjl"],
+	[116.343652,39.866694,"丰台区万泉寺358号","yyzx"],
+	[116.620167,39.909116,"朝阳区管庄乡防腐厂宿舍西门管庄液化气站","gzftz"]
+];
+
+for(var i=0;i<data_info.length;i++){
+    var marker = new BMap.Marker(new BMap.Point(data_info[i][0],data_info[i][1]));  // 创建标注
+    var content = data_info[i][3];
+    map.addOverlay(marker);               // 将标注添加到地图中
+    addClickHandler(content,marker);
+}
+
+function addClickHandler(content,marker){
+
+	marker.addEventListener("click",function () {
+
+        if (content == "yyzx") {
+            var yyzx_content = '<div style="margin:0;line-height:20px;padding:2px;">' +
+                '<img src="../static/bk_img/gas_icon.jpg" alt="" style="float:right;zoom:1;overflow:hidden;width:100px;height:100px;margin-left:3px;"/>' +
+                '地址：北京市丰台区万泉寺358号<br/>联系人：张廓<br/>电话：(010)63489951<br/>简介：北京液化石油气公司（南郊分公司）' +
+                '</div>';
+
+            //创建检索信息窗口对象
+            var yyzx_searchInfoWindow = null;
+            yyzx_searchInfoWindow = new BMapLib.SearchInfoWindow(map, yyzx_content, {
+                title: "运营中心",      //标题
+                width: 290,             //宽度
+                height: 105,              //高度
+                panel: "panel",         //检索结果面板
+                enableAutoPan: true,     //自动平移
+                searchTypes: [
+                    BMAPLIB_TAB_SEARCH,   //周边检索
+                    BMAPLIB_TAB_TO_HERE,  //到这里去
+                    BMAPLIB_TAB_FROM_HERE //从这里出发
+                ]
+            });
+            yyzx_searchInfoWindow.open(marker);
+            document.getElementById("r-result").innerHTML = "运营中心：<br />" + "联系人：张廓(站长)  159 0109 2347<br />                  李博(业务员)  159 0109 2347<br />地址：丰台区南郊充装站";
+
+        }else if(content == "ddj"){
+            var ddj_content = '<div style="margin:0;line-height:20px;padding:2px;">' +
+                '<img src="../static/bk_img/gas_icon.jpg" alt="" style="float:right;zoom:1;overflow:hidden;width:100px;height:100px;margin-left:3px;"/>' +
+                '地址：北京市丰台区东大街东里11号<br/>联系人：程永<br/>电话：(010)63859262<br/>简介：东大街' +
+                '</div>';
+
+            //创建检索信息窗口对象
+            var ddj_searchInfoWindow = null;
+            ddj_searchInfoWindow = new BMapLib.SearchInfoWindow(map, ddj_content, {
+                title: "东大街",      //标题
+                width: 290,             //宽度
+                height: 105,              //高度
+                panel: "panel",         //检索结果面板
+                enableAutoPan: true,     //自动平移
+                searchTypes: [
+                    BMAPLIB_TAB_SEARCH,   //周边检索
+                    BMAPLIB_TAB_TO_HERE,  //到这里去
+                    BMAPLIB_TAB_FROM_HERE //从这里出发
+                ]
+            });
+            ddj_searchInfoWindow.open(marker);
+			document.getElementById("r-result").innerHTML = "信息窗口的内容是：<br />" + "联系人：程永<br />电话：139 1168 6796"+"地址：北京市丰台区东大街东里11号";
+
+        }else if(content == "htya"){
+            var htya_content = '<div style="margin:0;line-height:20px;padding:2px;">' +
+                '<img src="../static/bk_img/gas_icon.jpg" alt="" style="float:right;zoom:1;overflow:hidden;width:100px;height:100px;margin-left:3px;"/>' +
+                '地址：北京市西城区右内西街里8号<br/>联系人：韩金忠<br/>电话：(010)63522053<br/>简介：红土右安' +
+                '</div>';
+
+            //创建检索信息窗口对象
+            var htya_searchInfoWindow = null;
+            htya_searchInfoWindow = new BMapLib.SearchInfoWindow(map, htya_content, {
+                title: "红土右安",      //标题
+                width: 290,             //宽度
+                height: 105,              //高度
+                panel: "panel",         //检索结果面板
+                enableAutoPan: true,     //自动平移
+                searchTypes: [
+                    BMAPLIB_TAB_SEARCH,   //周边检索
+                    BMAPLIB_TAB_TO_HERE,  //到这里去
+                    BMAPLIB_TAB_FROM_HERE //从这里出发
+                ]
+            });
+            htya_searchInfoWindow.open(marker);
+			document.getElementById("r-result").innerHTML = "信息窗口的内容是：<br />" + "联系人：韩金忠<br />电话：137 0121 4839"+"地址：北京市西城区右内西街里8号";
+
+		}else if(content == "wyl"){
+            var wyl_content = '<div style="margin:0;line-height:20px;padding:2px;">' +
+                '<img src="../static/bk_img/gas_icon.jpg" alt="" style="float:right;zoom:1;overflow:hidden;width:100px;height:100px;margin-left:3px;"/>' +
+                '地址：北京市丰台万源北路1号<br/>联系人：乔金玉<br/>电话：(010)67991260<br/>简介：万源路' +
+                '</div>';
+
+            //创建检索信息窗口对象
+            var wyl_searchInfoWindow = null;
+            wyl_searchInfoWindow = new BMapLib.SearchInfoWindow(map, wyl_content, {
+                title: "万源路",      //标题
+                width: 290,             //宽度
+                height: 105,              //高度
+                panel: "panel",         //检索结果面板
+                enableAutoPan: true,     //自动平移
+                searchTypes: [
+                    BMAPLIB_TAB_SEARCH,   //周边检索
+                    BMAPLIB_TAB_TO_HERE,  //到这里去
+                    BMAPLIB_TAB_FROM_HERE //从这里出发
+                ]
+            });
+            wyl_searchInfoWindow.open(marker);
+			document.getElementById("r-result").innerHTML = "信息窗口的内容是：<br />" + "联系人：乔金玉  手机：137 0121 4839<br />联系人：王兴  手机：152 1005 5269<br />地址：北京市西城区右内西街里8号";
+
+		}else if(content == "zgk"){
+            var zgk_content = '<div style="margin:0;line-height:20px;padding:2px;">' +
+                '<img src="../static/bk_img/gas_icon.jpg" alt="" style="float:right;zoom:1;overflow:hidden;width:100px;height:100px;margin-left:3px;"/>' +
+                '地址：北京市丰台东木樨园6号楼楼下<br/>联系人：魏起成<br/>电话：(010)67223625<br/>简介：赵公口' +
+                '</div>';
+
+            //创建检索信息窗口对象
+            var zgk_searchInfoWindow = null;
+            zgk_searchInfoWindow = new BMapLib.SearchInfoWindow(map, zgk_content, {
+                title: "赵公口",      //标题
+                width: 290,             //宽度
+                height: 105,              //高度
+                panel: "panel",         //检索结果面板
+                enableAutoPan: true,     //自动平移
+                searchTypes: [
+                    BMAPLIB_TAB_SEARCH,   //周边检索
+                    BMAPLIB_TAB_TO_HERE,  //到这里去
+                    BMAPLIB_TAB_FROM_HERE //从这里出发
+                ]
+            });
+            zgk_searchInfoWindow.open(marker);
+			document.getElementById("r-result").innerHTML = "信息窗口的内容是：<br />" + "联系人：魏起成  手机：136 2139 1775<br />联系人：郝爽  手机：134 8888 9818<br />地址：北京市丰台东木樨园6号楼楼下";
+
+		}else if(content == "tt"){
+            var tt_content = '<div style="margin:0;line-height:20px;padding:2px;">' +
+                '<img src="../static/bk_img/gas_icon.jpg" alt="" style="float:right;zoom:1;overflow:hidden;width:100px;height:100px;margin-left:3px;"/>' +
+                '地址：东城区天坛东里中区10号楼对面<br/>联系人：祖国刚<br/>电话：(010)67024456<br/>简介：天坛' +
+                '</div>';
+
+            //创建检索信息窗口对象
+            var tt_searchInfoWindow = null;
+            tt_searchInfoWindow = new BMapLib.SearchInfoWindow(map, tt_content, {
+                title: "天坛",      //标题
+                width: 290,             //宽度
+                height: 105,              //高度
+                panel: "panel",         //检索结果面板
+                enableAutoPan: true,     //自动平移
+                searchTypes: [
+                    BMAPLIB_TAB_SEARCH,   //周边检索
+                    BMAPLIB_TAB_TO_HERE,  //到这里去
+                    BMAPLIB_TAB_FROM_HERE //从这里出发
+                ]
+            });
+            tt_searchInfoWindow.open(marker);
+			document.getElementById("r-result").innerHTML = "信息窗口的内容是：<br />" + "联系人：祖国刚(站长)  手机：137 1812 3520<br />联系人：王雪芬(业务员)  手机：138 0136 0925<br />地址：北京市东城区天坛东里中区10号楼对面";
+
+		}else if(content == "phy"){
+            var phy_content = '<div style="margin:0;line-height:20px;padding:2px;">' +
+                '<img src="../static/bk_img/gas_icon.jpg" alt="" style="float:right;zoom:1;overflow:hidden;width:100px;height:100px;margin-left:3px;"/>' +
+                '地址：北京市丰台蒲黄榆四里20号楼西侧<br/>联系人：王全福<br/>电话：(010)67612536<br/>简介：蒲黄榆' +
+                '</div>';
+
+            //创建检索信息窗口对象
+            var phy_searchInfoWindow = null;
+            phy_searchInfoWindow = new BMapLib.SearchInfoWindow(map, phy_content, {
+                title: "蒲黄榆",      //标题
+                width: 290,             //宽度
+                height: 105,              //高度
+                panel: "panel",         //检索结果面板
+                enableAutoPan: true,     //自动平移
+                searchTypes: [
+                    BMAPLIB_TAB_SEARCH,   //周边检索
+                    BMAPLIB_TAB_TO_HERE,  //到这里去
+                    BMAPLIB_TAB_FROM_HERE //从这里出发
+                ]
+            });
+            phy_searchInfoWindow.open(marker);
+			document.getElementById("r-result").innerHTML = "信息窗口的内容是：<br />" + "联系人：王全福(站长)  手机：136 1117 0860<br />联系人：张博(业务员)  手机：186 1048 1664<br />地址：北京市丰台蒲黄榆四里20号楼西侧";
+
+		}else if(content == "xly"){
+            var xly_content = '<div style="margin:0;line-height:20px;padding:2px;">' +
+                '<img src="../static/bk_img/gas_icon.jpg" alt="" style="float:right;zoom:1;overflow:hidden;width:100px;height:100px;margin-left:3px;"/>' +
+                '地址：北京市西城东河沿45号<br/>联系人：黄伟<br/>电话：(010)63030150<br/>简介：香炉营' +
+                '</div>';
+
+            //创建检索信息窗口对象
+            var xly_searchInfoWindow = null;
+            xly_searchInfoWindow = new BMapLib.SearchInfoWindow(map, xly_content, {
+                title: "香炉营",      //标题
+                width: 290,             //宽度
+                height: 105,              //高度
+                panel: "panel",         //检索结果面板
+                enableAutoPan: true,     //自动平移
+                searchTypes: [
+                    BMAPLIB_TAB_SEARCH,   //周边检索
+                    BMAPLIB_TAB_TO_HERE,  //到这里去
+                    BMAPLIB_TAB_FROM_HERE //从这里出发
+                ]
+            });
+            xly_searchInfoWindow.open(marker);
+			document.getElementById("r-result").innerHTML = "信息窗口的内容是：<br />" + "联系人：黄伟(站长)  手机：139 0136 9892<br />联系人：王宏帅(业务员)  手机：158 0161 6330<br />地址：北京市西城东河沿45号";
+
+		}else if(content == "cx"){
+            var cx_content = '<div style="margin:0;line-height:20px;padding:2px;">' +
+                '<img src="../static/bk_img/gas_icon.jpg" alt="" style="float:right;zoom:1;overflow:hidden;width:100px;height:100px;margin-left:3px;"/>' +
+                '地址：北京市东城区东打磨厂5号<br/>联系人：陈文斌<br/>电话：(010)67024594<br/>简介：崇西' +
+                '</div>';
+
+            //创建检索信息窗口对象
+            var cx_searchInfoWindow = null;
+            cx_searchInfoWindow = new BMapLib.SearchInfoWindow(map, cx_content, {
+                title: "崇西",      //标题
+                width: 290,             //宽度
+                height: 105,              //高度
+                panel: "panel",         //检索结果面板
+                enableAutoPan: true,     //自动平移
+                searchTypes: [
+                    BMAPLIB_TAB_SEARCH,   //周边检索
+                    BMAPLIB_TAB_TO_HERE,  //到这里去
+                    BMAPLIB_TAB_FROM_HERE //从这里出发
+                ]
+            });
+            cx_searchInfoWindow.open(marker);
+			document.getElementById("r-result").innerHTML = "信息窗口的内容是：<br />" + "联系人：陈文斌(站长)  手机：136 7101 4394<br />联系人：刘畅(业务员)  手机：135 5247 8917<br />地址：北京市东城区东打磨厂5号";
+
+		}else if(content == "hfl"){
+            var hfl_content = '<div style="margin:0;line-height:20px;padding:2px;">' +
+                '<img src="../static/bk_img/gas_icon.jpg" alt="" style="float:right;zoom:1;overflow:hidden;width:100px;height:100px;margin-left:3px;"/>' +
+                '地址：北京市西城寿长街1号<br/>联系人：娄毅<br/>电话：(010)83160154<br/>简介：虎坊路' +
+                '</div>';
+
+            //创建检索信息窗口对象
+            var hfl_searchInfoWindow = null;
+            hfl_searchInfoWindow = new BMapLib.SearchInfoWindow(map, hfl_content, {
+                title: "虎坊路",      //标题
+                width: 290,             //宽度
+                height: 105,              //高度
+                panel: "panel",         //检索结果面板
+                enableAutoPan: true,     //自动平移
+                searchTypes: [
+                    BMAPLIB_TAB_SEARCH,   //周边检索
+                    BMAPLIB_TAB_TO_HERE,  //到这里去
+                    BMAPLIB_TAB_FROM_HERE //从这里出发
+                ]
+            });
+            hfl_searchInfoWindow.open(marker);
+			document.getElementById("r-result").innerHTML = "信息窗口的内容是：<br />" + "联系人：娄毅(站长)  手机：133 1131 8965<br />联系人：刘畅(业务员)  手机：139 1045 4421<br />地址：北京市西城寿长街1号";
+
+		}else if(content == "hy"){
+            var hy_content = '<div style="margin:0;line-height:20px;padding:2px;">' +
+                '<img src="../static/bk_img/gas_icon.jpg" alt="" style="float:right;zoom:1;overflow:hidden;width:100px;height:100px;margin-left:3px;"/>' +
+                '地址：丰台和义东里4区小学校旁<br/>联系人：王鹏<br/>电话：(010)67991808<br/>简介：和义' +
+                '</div>';
+
+            //创建检索信息窗口对象
+            var hy_searchInfoWindow = null;
+            hy_searchInfoWindow = new BMapLib.SearchInfoWindow(map, hy_content, {
+                title: "和义",      //标题
+                width: 290,             //宽度
+                height: 105,              //高度
+                panel: "panel",         //检索结果面板
+                enableAutoPan: true,     //自动平移
+                searchTypes: [
+                    BMAPLIB_TAB_SEARCH,   //周边检索
+                    BMAPLIB_TAB_TO_HERE,  //到这里去
+                    BMAPLIB_TAB_FROM_HERE //从这里出发
+                ]
+            });
+            hy_searchInfoWindow.open(marker);
+			document.getElementById("r-result").innerHTML = "信息窗口的内容是：<br />" + "联系人：王鹏(站长)  手机：137 1818 0401<br />联系人：张剑(业务员)  手机：138 1123 9989<br />地址：北京市丰台和义东里4区小学校旁";
+
+		}else if(content == "mld"){
+            var mld_content = '<div style="margin:0;line-height:20px;padding:2px;">' +
+                '<img src="../static/bk_img/gas_icon.jpg" alt="" style="float:right;zoom:1;overflow:hidden;width:100px;height:100px;margin-left:3px;"/>' +
+                '地址：西城区马连道北街8号<br/>联系人：郭淑惠<br/>电话：(010)63466748<br/>简介：马连道' +
+                '</div>';
+
+            //创建检索信息窗口对象
+            var mld_searchInfoWindow = null;
+            mld_searchInfoWindow = new BMapLib.SearchInfoWindow(map, mld_content, {
+                title: "马连道",      //标题
+                width: 290,             //宽度
+                height: 105,              //高度
+                panel: "panel",         //检索结果面板
+                enableAutoPan: true,     //自动平移
+                searchTypes: [
+                    BMAPLIB_TAB_SEARCH,   //周边检索
+                    BMAPLIB_TAB_TO_HERE,  //到这里去
+                    BMAPLIB_TAB_FROM_HERE //从这里出发
+                ]
+            });
+            mld_searchInfoWindow.open(marker);
+			document.getElementById("r-result").innerHTML = "信息窗口的内容是：<br />" + "联系人：郭淑惠(站长)  手机：136 8360 1165<br />联系人：曹雪飞(业务员)  手机：138 1169 4313<br />地址：北京市西城区马连道北街8号";
+
+		}else if(content == "dtp"){
+            var dtp_content = '<div style="margin:0;line-height:20px;padding:2px;">' +
+                '<img src="../static/bk_img/gas_icon.jpg" alt="" style="float:right;zoom:1;overflow:hidden;width:100px;height:100px;margin-left:3px;"/>' +
+                '地址：西城区东太平街甲1号<br/>联系人：王申凯<br/>电话：(010)66034756<br/>简介：东太平' +
+                '</div>';
+
+            //创建检索信息窗口对象
+            var dtp_searchInfoWindow = null;
+            dtp_searchInfoWindow = new BMapLib.SearchInfoWindow(map, dtp_content, {
+                title: "东太平",      //标题
+                width: 290,             //宽度
+                height: 105,              //高度
+                panel: "panel",         //检索结果面板
+                enableAutoPan: true,     //自动平移
+                searchTypes: [
+                    BMAPLIB_TAB_SEARCH,   //周边检索
+                    BMAPLIB_TAB_TO_HERE,  //到这里去
+                    BMAPLIB_TAB_FROM_HERE //从这里出发
+                ]
+            });
+            dtp_searchInfoWindow.open(marker);
+			document.getElementById("r-result").innerHTML = "信息窗口的内容是：<br />" + "联系人：王申凯(站长)  手机：133 1115 5788<br />联系人：苏梦(业务员)  手机：136 6130 3613<br />地址：北京市西城区东太平街甲1号";
+
+		}else if(content == "ew"){
+            var ew_content = '<div style="margin:0;line-height:20px;padding:2px;">' +
+                '<img src="../static/bk_img/gas_icon.jpg" alt="" style="float:right;zoom:1;overflow:hidden;width:100px;height:100px;margin-left:3px;"/>' +
+                '地址：朝阳区定福庄南里1号<br/>联系人：刘小军<br/>电话：(010)65761452<br/>简介：二外' +
+                '</div>';
+
+            //创建检索信息窗口对象
+            var ew_searchInfoWindow = null;
+            ew_searchInfoWindow = new BMapLib.SearchInfoWindow(map, ew_content, {
+                title: "二外",      //标题
+                width: 290,             //宽度
+                height: 105,              //高度
+                panel: "panel",         //检索结果面板
+                enableAutoPan: true,     //自动平移
+                searchTypes: [
+                    BMAPLIB_TAB_SEARCH,   //周边检索
+                    BMAPLIB_TAB_TO_HERE,  //到这里去
+                    BMAPLIB_TAB_FROM_HERE //从这里出发
+                ]
+            });
+            ew_searchInfoWindow.open(marker);
+			document.getElementById("r-result").innerHTML = "信息窗口的内容是：<br />" + "联系人：刘小军(站长)  手机：138 1110 8308<br />联系人：郭凤霞(业务员)  手机：186 1821 9645<br />地址：北京市朝阳区定福庄南里1号";
+
+		}else if(content == "sbld"){
+            var sbld_content = '<div style="margin:0;line-height:20px;padding:2px;">' +
+                '<img src="../static/bk_img/gas_icon.jpg" alt="" style="float:right;zoom:1;overflow:hidden;width:100px;height:100px;margin-left:3px;"/>' +
+                '地址：朝阳区十八里店村液化气站<br/>联系人：叶明<br/>电话：(010)67474018<br/>简介：十八里店' +
+                '</div>';
+
+            //创建检索信息窗口对象
+            var sbld_searchInfoWindow = null;
+            sbld_searchInfoWindow = new BMapLib.SearchInfoWindow(map, sbld_content, {
+                title: "十八里店",      //标题
+                width: 290,             //宽度
+                height: 105,              //高度
+                panel: "panel",         //检索结果面板
+                enableAutoPan: true,     //自动平移
+                searchTypes: [
+                    BMAPLIB_TAB_SEARCH,   //周边检索
+                    BMAPLIB_TAB_TO_HERE,  //到这里去
+                    BMAPLIB_TAB_FROM_HERE //从这里出发
+                ]
+            });
+            sbld_searchInfoWindow.open(marker);
+			document.getElementById("r-result").innerHTML = "信息窗口的内容是：<br />" + "联系人：叶明(站长)  手机：139 1181 6875<br />联系人：苏越(业务员)  手机：150 0108 4542<br />地址：北京市朝阳区十八里店村液化气站";
+
+		}else if(content == "hx"){
+            var hx_content = '<div style="margin:0;line-height:20px;padding:2px;">' +
+                '<img src="../static/bk_img/gas_icon.jpg" alt="" style="float:right;zoom:1;overflow:hidden;width:100px;height:100px;margin-left:3px;"/>' +
+                '地址：丰台区韩庄东里甲1号院<br/>联系人：田长海<br/>电话：(010)63713539<br/>简介：花乡' +
+                '</div>';
+
+            //创建检索信息窗口对象
+            var hx_searchInfoWindow = null;
+            hx_searchInfoWindow = new BMapLib.SearchInfoWindow(map, hx_content, {
+                title: "花乡",      //标题
+                width: 290,             //宽度
+                height: 105,              //高度
+                panel: "panel",         //检索结果面板
+                enableAutoPan: true,     //自动平移
+                searchTypes: [
+                    BMAPLIB_TAB_SEARCH,   //周边检索
+                    BMAPLIB_TAB_TO_HERE,  //到这里去
+                    BMAPLIB_TAB_FROM_HERE //从这里出发
+                ]
+            });
+            hx_searchInfoWindow.open(marker);
+			document.getElementById("r-result").innerHTML = "信息窗口的内容是：<br />" + "联系人：田长海(站长)  手机：136 9128 7374<br />联系人：许楠(业务员)  手机：159 1085 1151<br />地址：北京市丰台区韩庄东里甲1号院";
+
+		}else if(content == "xfdj"){
+            var xfdj_content = '<div style="margin:0;line-height:20px;padding:2px;">' +
+                '<img src="../static/bk_img/gas_icon.jpg" alt="" style="float:right;zoom:1;overflow:hidden;width:100px;height:100px;margin-left:3px;"/>' +
+                '地址：丰台区韩庄东里甲1号院<br/>联系人：杨凤春<br/>电话：(010)67124351<br/>简介：幸福大街' +
+                '</div>';
+
+            //创建检索信息窗口对象
+            var xfdj_searchInfoWindow = null;
+            xfdj_searchInfoWindow = new BMapLib.SearchInfoWindow(map, xfdj_content, {
+                title: "幸福大街",      //标题
+                width: 290,             //宽度
+                height: 105,              //高度
+                panel: "panel",         //检索结果面板
+                enableAutoPan: true,     //自动平移
+                searchTypes: [
+                    BMAPLIB_TAB_SEARCH,   //周边检索
+                    BMAPLIB_TAB_TO_HERE,  //到这里去
+                    BMAPLIB_TAB_FROM_HERE //从这里出发
+                ]
+            });
+            xfdj_searchInfoWindow.open(marker);
+			document.getElementById("r-result").innerHTML = "信息窗口的内容是：<br />" + "联系人：杨凤春(站长)  手机：136 0137 8438<br />地址：北京市东城区幸福南大街60号";
+
+		}else if(content == "sfdl"){
+            var sfdl_content = '<div style="margin:0;line-height:20px;padding:2px;">' +
+                '<img src="../static/bk_img/gas_icon.jpg" alt="" style="float:right;zoom:1;overflow:hidden;width:100px;height:100px;margin-left:3px;"/>' +
+                '地址：西城区长春里8号楼楼下<br/>联系人：张禹<br/>电话：(010)83126376<br/>简介：市府大楼' +
+                '</div>';
+
+            //创建检索信息窗口对象
+            var sfdl_searchInfoWindow = null;
+            sfdl_searchInfoWindow = new BMapLib.SearchInfoWindow(map, sfdl_content, {
+                title: "市府大楼",      //标题
+                width: 290,             //宽度
+                height: 105,              //高度
+                panel: "panel",         //检索结果面板
+                enableAutoPan: true,     //自动平移
+                searchTypes: [
+                    BMAPLIB_TAB_SEARCH,   //周边检索
+                    BMAPLIB_TAB_TO_HERE,  //到这里去
+                    BMAPLIB_TAB_FROM_HERE //从这里出发
+                ]
+            });
+            sfdl_searchInfoWindow.open(marker);
+			document.getElementById("r-result").innerHTML = "信息窗口的内容是：<br />" + "联系人：张禹(站长)  手机：136 0111 3541<br />联系人：张靓(业务员)  手机：135 2039 0756<br />地址：北京市西城区长春里8号楼楼下";
+
+		}else if(content == "bdd"){
+            var bdd_content = '<div style="margin:0;line-height:20px;padding:2px;">' +
+                '<img src="../static/bk_img/gas_icon.jpg" alt="" style="float:right;zoom:1;overflow:hidden;width:100px;height:100px;margin-left:3px;"/>' +
+                '地址：丰台北大地西小区1--3里中间<br/>联系人：肖振军<br/>电话：(010)63821542<br/>简介：北大地' +
+                '</div>';
+
+            //创建检索信息窗口对象
+            var bdd_searchInfoWindow = null;
+            bdd_searchInfoWindow = new BMapLib.SearchInfoWindow(map, bdd_content, {
+                title: "北大地",      //标题
+                width: 290,             //宽度
+                height: 105,              //高度
+                panel: "panel",         //检索结果面板
+                enableAutoPan: true,     //自动平移
+                searchTypes: [
+                    BMAPLIB_TAB_SEARCH,   //周边检索
+                    BMAPLIB_TAB_TO_HERE,  //到这里去
+                    BMAPLIB_TAB_FROM_HERE //从这里出发
+                ]
+            });
+            bdd_searchInfoWindow.open(marker);
+			document.getElementById("r-result").innerHTML = "信息窗口的内容是：<br />" + "联系人：肖振军(站长)  手机：137 1820 8556<br />联系人：郝忠(业务员)  手机：130 2111 7136<br />地址：北京市丰台北大地西小区1--3里中间";
+
+		}else {
+            console.log('haha error!!');
+		}
+    })
+}
+
+// 开启鼠标滚轮缩放
+map.enableScrollWheelZoom(true);
+
+// 获取文本框值
+var oTextbox1=document.getElementById("txt1");
+function input_value() {
+	console.log(oTextbox1.value);
+	if(oTextbox1.value == "运营中心") {
+        map.centerAndZoom(new BMap.Point(116.343652, 39.866694), 20);
+
+    }else if(oTextbox1.value == "红土右安"){
+	    map.centerAndZoom(new BMap.Point(116.368675,39.876982), 20);
+
+	}else if(oTextbox1.value == "东大街"){
+	    map.centerAndZoom(new BMap.Point(116.42093,39.865393), 20);
+
+	}else if(oTextbox1.value == "万源路"){
+	    map.centerAndZoom(new BMap.Point(116.430174,39.809747), 20);
+
+	}else if(oTextbox1.value == "赵公口"){
+	    map.centerAndZoom(new BMap.Point(116.414844,39.863891), 20);
+
+	}else if(oTextbox1.value == "天坛"){
+	    map.centerAndZoom(new BMap.Point(116.427181,39.881859), 20);
+
+	}else if(oTextbox1.value == "蒲黄榆"){
+	    map.centerAndZoom(new BMap.Point(116.424654,39.873516), 20);
+
+	}else if(oTextbox1.value == "香炉营"){
+	    map.centerAndZoom(new BMap.Point(116.387005,39.905418), 20);
+
+	}else if(oTextbox1.value == "崇西"){
+	    map.centerAndZoom(new BMap.Point(116.421087,39.905864), 20);
+
+	}else if(oTextbox1.value == "虎坊路"){
+	    map.centerAndZoom(new BMap.Point(116.394289,39.891778), 20);
+
+	}else if(oTextbox1.value == "和义"){
+	    map.centerAndZoom(new BMap.Point(116.411276,39.822173), 20);
+
+	}else if(oTextbox1.value == "马连道"){
+	    map.centerAndZoom(new BMap.Point(116.335702,39.893658), 20);
+
+	}else if(oTextbox1.value == "东太平"){
+	    map.centerAndZoom(new BMap.Point(116.367133,39.907577), 20);
+
+	}else if(oTextbox1.value == "二外"){
+	    map.centerAndZoom(new BMap.Point(116.568217,39.918109), 20);
+
+	}else if(oTextbox1.value == "赵公口"){
+	    map.centerAndZoom(new BMap.Point(116.414844,39.863891), 20);
+
+	}else if(oTextbox1.value == "十八里店"){
+	    map.centerAndZoom(new BMap.Point(116.492758,39.852591), 20);
+
+	}else if(oTextbox1.value == "花乡"){
+	    map.centerAndZoom(new BMap.Point(116.295563,39.845779), 20);
+
+	}else if(oTextbox1.value == "幸福大街"){
+	    map.centerAndZoom(new BMap.Point(116.439077,39.890797), 20);
+
+	}else if(oTextbox1.value == "市府大楼"){
+	    map.centerAndZoom(new BMap.Point(116.369683,39.899656), 20);
+
+	}else if(oTextbox1.value == "北大地"){
+	    map.centerAndZoom(new BMap.Point(116.289831,39.864387), 20);
+
+	}else if(oTextbox1.value == "东大街"){
+	    map.centerAndZoom(new BMap.Point(116.42093,39.865393), 20);
+
+	}else if(oTextbox1.value == "呼家楼"){
+	    map.centerAndZoom(new BMap.Point(116.549486,39.945334), 20);
+
+	}else if(oTextbox1.value == "运营中心"){
+	    map.centerAndZoom(new BMap.Point(116.343652,39.866694), 20);
+
+	}else if(oTextbox1.value == "管庄伐头站"){
+	    map.centerAndZoom(new BMap.Point(116.620167,39.909116), 20);
+
+	}else{
+	    console.log("没有该站点名称!");
+		alert("没有该站点名称,请重新输入!");
+	}
+
+}
+
+
+</script>
+</body>
+</html>
