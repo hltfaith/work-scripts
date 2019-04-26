@@ -1,0 +1,5 @@
+ 字符串复制函数 strcpy()
+strcpy 是 string copy 的缩写，意思是字符串复制，也即将字符串从一个地方复制到另外一个地方，语法格式为：
+
+strcpy(arrayName1, arrayName2);
+
