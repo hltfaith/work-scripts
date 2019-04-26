@@ -1,0 +1,12 @@
+字符串连接函数 strcat()
+
+strcat 是 string catenate 的缩写，意思是把两个字符串拼接在一起，语法格式为：
+
+strcat(arrayName1, arrayName2);
+
+arrayName1、arrayName2 为需要拼接的字符串。
+
+strcat() 将把 arrayName2 连接到 arrayName1 后面，并删除原来 arrayName1 最后的结束标志'\0'。这意味着，arrayName1 必须足够长，
+要能够同时容纳 arrayName1 和 arrayName2，否则会越界（超出范围）。
+
+strcat() 的返回值为 arrayName1 的地址。
