@@ -1,0 +1,15 @@
+
+ 字符串比较函数 strcmp()
+strcmp 是 string compare 的缩写，意思是字符串比较，语法格式为：
+
+strcmp(arrayName1, arrayName2);
+
+arrayName1 和 arrayName2 是需要比较的两个字符串。
+
+字符本身没有大小之分，strcmp() 以各个字符对应的 ASCII 码值进行比较。strcmp() 从两个字符串的第 0 个字符开始比较，如果它们相等，
+就继续比较下一个字符，直到遇见不同的字符，或者到字符串的末尾。
+
+返回值：若 arrayName1 和 arrayName2 相同，则返回0；若 arrayName1 大于 arrayName2，则返回大于 0 的值；
+若 arrayName1 小于 arrayName2，则返回小于0 的值。
+
+
