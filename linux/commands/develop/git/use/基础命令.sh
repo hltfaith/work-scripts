@@ -25,4 +25,6 @@ git fetch origin
 # 然后可以比对
 git diff 本地分支 origin/xxxx
 
+# 切换到其他分支
+git checkout mb-policy
 
