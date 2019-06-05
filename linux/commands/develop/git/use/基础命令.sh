@@ -1,4 +1,12 @@
 
+# 初始化 git 服务
+git config --global user.name "你的名字或昵称"
+git config --global user.email "你的邮箱"
+
+git add . #将当前目录所有文件添加到git暂存区
+git commit -m "my first commit" #提交并备注提交信息
+git push origin master #将本地提交推送到远程仓库
+
 branch常用的命令：
 git branch -a #查看本地和远程所有的分支
 git branch -r #查看所有远程分支
