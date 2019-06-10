@@ -9,6 +9,73 @@ so动态库文件制作
     -fPIC：PIC指Position Independent Code，表示编译为位置独立的代码，不用此选项的话编译后的代码是位置相关的,所以动态载入时是通过代码拷贝的方式来满足不同进程的需要，而不能达到真正代码段共享的目的。
     
     
+ 第二步：
+
+编译上述程序。编译器需要知道.h文件位置。
+
+        对于#include "..."，编译器会在当前路径搜索.h文件。你也可以使用-I选项提供额外的搜索路径，比如-I/home/vamei/test。
+        对于#include <...>，编译器会在默认include搜索路径中寻找。
+
+编译器还需要知道我们用了哪个库文件，在gcc中:
+
+        使用-l选项说明库文件的名字。这里，我们将使用-lmystack (即libmystack库文件)。
+        使用-L选项说明库文件所在的路径。这里，我们使用-L. (即.路径)。
+
+如果没有提供-L选项，gcc将在默认库文件搜索路径中寻找。
+
+ 
+
+你可以使用下面的命令，来获知自己电脑上的include默认搜索路径:
+
+$`gcc -print-prog-name=cc1` -v   
+
+获知库默认搜索路径:
+
+$gcc -print-search-dirs
+
+
+    生成Hello.c文件的动态链接库libHello.so以后，直接在包含Hello.h和libHello.so文件夹底下运行如下gcc命令：
+
+      $ gcc test.c -lHello -L. -I`pwd` -o test
+
+ 
+
+    -L.：-L后跟连接库的路径，‘.’表示要连接的库在当前目录中；
+
+    -I`pwd`：表示要连接的头文件在当前目录；
+
+    -lHello：编译器查找动态连接库时有隐含的命名规则，即在给出的名字前面加上lib，后面加上.so来确定库的名称（即：libHello.so）。
+
+
+第三步：
+    执行命令“$ ldd test” 打印test可执行文件的动态库依赖关系，结果输出：
+
+      linux-vdso.so.1 =>  (0x00007fff16b8a000)
+      libHello.so => not found
+      libc.so.6 => /lib/x86_64-linux-gnu/libc.so.6 (0x00007fa55700c000)
+      /lib64/ld-linux-x86-64.so.2 (0x00007fa5573e4000)
+
+    其中，“libHello.so => not found”表明链接程序找不到libHello.so文件，这是因为链接程序只寻找固定目录（一般为/lib和/usr/lib），解决方法有两种：
+    方法一：把libHello.so拷贝到链接程序的搜索路径目录下（/lib或/usr/lib）。
+    方法二：设置环境变量LD_LIBRARY_PATH，增加当前路径到该变量中。
+        配置环境变量的方法为：
+
+ export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:`pwd`
+
+    这里采用第一种解决方法，再次执行“$ ldd test”，此时显示：
+
+
+        linux-vdso.so.1 =>  (0x00007fff6c7d7000)
+        libHello.so => /lib/libHello.so (0x00007f818dce3000)
+        libc.so.6 => /lib/x86_64-linux-gnu/libc.so.6 (0x00007f818d923000)
+        /lib64/ld-linux-x86-64.so.2 (0x00007f818defd000)
+
+
+    libHello.so=>后有值，说明查找动态库成功。
+    执行“./test”命令，正确输出相应结果。   
+ 
     
+ 参考博客：
+ https://www.cnblogs.com/cdyboke/p/7750015.html
     
     
