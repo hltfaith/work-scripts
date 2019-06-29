@@ -12,3 +12,21 @@ git commit -m '添加描述信息'         #添加描述信息
 git push origin master		 #删除同步服务器
 
 
+# git stash 储藏功能
+# Git还提供了一个stash功能，可以把当前工作现场“储藏”起来，等以后恢复现场后继续工作
+git stash
+
+git stash list
+
+# 恢复
+git stash apply
+
+# 删除
+git stash drop
+git stash pop
+
+
+
+
+
+
