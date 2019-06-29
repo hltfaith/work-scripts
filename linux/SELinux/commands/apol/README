@@ -1,0 +1,3 @@
+apol策略审计工具 
+
+yum install -y setools*
